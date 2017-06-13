@@ -61,10 +61,16 @@ ALTER TABLE `messages` ADD FOREIGN KEY (id_rooms) REFERENCES `rooms` (`id`);
 
 /* Create other tables and define schemas for them here! */
 
-
-
+insert into users (name) values ('DP');
+insert into users (name) values ('PD');
+insert into rooms (name) values ('lobby');
+insert into rooms (name) values ('roomHR');
+insert into messages (user, id_rooms, text) values (1, 1, 'First!');
+insert into messages (user, id_rooms, text) values (1, 2, 'Second!');
+insert into messages (user, id_rooms, text) values (2, 1, 'YAY!');
+insert into messages (user, id_rooms, text) values (2, 2, 'BOOO!');
 
 /*  Execute this file from the command line by typing:
- *    mysql -u root < server/schema.sql
+ *    mysql -u root < server/schema.sql -p
  *  to create the database and the tables.*/
 
