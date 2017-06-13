@@ -12,7 +12,7 @@ module.exports = {
           console.log('messages OF model GET MESSAGES: ', messages);
           callback(null, messages);
         }
-      })
+      });
     }, // produces all the messages
     post: (err, data) => {} // can be used to insert a message into the database
   },
