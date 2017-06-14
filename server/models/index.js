@@ -36,21 +36,21 @@ module.exports = {
       });
     },
     post: (user, callback) => {
-      let queryString = 'insert into users (name) values (?);'
+      let queryString = 'insert into users (name) values (?);';
 
       db.connection.query(queryString, [user.username], (err, userId) => {
         if (err) {
           console.error('USERS MODEL POST() ERROR: ', err.code);
           if (err.code === 'ER_DUP_ENTRY') {
-            break;
+            console.log('hi');// this.users.get(callback); 
           } else {
-            callback(err, null);
+            callback(err, null);           
           }
         } else {
           console.log('USERS OF MODEL POST USERS POSTED!!!!: ', userId);
           callback(null, userId);
         }
-      })
+      });
     }
   }
 };
