@@ -20,7 +20,7 @@ DROP TABLE IF EXISTS messages;
 CREATE TABLE messages (
   id INTEGER AUTO_INCREMENT,
   user INTEGER,
-  id_rooms INTEGER,
+  room VARCHAR(25),
   text VARCHAR(350),
   PRIMARY KEY (id)
 );
@@ -34,21 +34,9 @@ DROP TABLE IF EXISTS `users`;
 		
 CREATE TABLE `users` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR (25),
-  PRIMARY KEY (`id`)
-);
-
--- ---
--- Table 'rooms'
--- 
--- ---
-
-DROP TABLE IF EXISTS `rooms`;
-		
-CREATE TABLE `rooms` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR (25),
-  PRIMARY KEY (`id`)
+  `name` VARCHAR(25),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY (`name`)
 );
 
 -- ---
@@ -56,19 +44,17 @@ CREATE TABLE `rooms` (
 -- ---
 
 ALTER TABLE `messages` ADD FOREIGN KEY (user) REFERENCES `users` (`id`);
-ALTER TABLE `messages` ADD FOREIGN KEY (id_rooms) REFERENCES `rooms` (`id`);
+
 
 
 /* Create other tables and define schemas for them here! */
 
 insert into users (name) values ('DP');
 insert into users (name) values ('PD');
-insert into rooms (name) values ('lobby');
-insert into rooms (name) values ('roomHR');
-insert into messages (user, id_rooms, text) values (1, 1, 'First!');
-insert into messages (user, id_rooms, text) values (1, 2, 'Second!');
-insert into messages (user, id_rooms, text) values (2, 1, 'YAY!');
-insert into messages (user, id_rooms, text) values (2, 2, 'BOOO!');
+insert into messages (user, room, text) values (1, 'yolo', 'First!');
+insert into messages (user, room, text) values (1, 'HR', 'Second!');
+insert into messages (user, room, text) values (2, 'yolo', 'YAY!');
+insert into messages (user, room, text) values (2, 'HR', 'BOOO!');
 
 /*  Execute this file from the command line by typing:
  *    mysql -u root < server/schema.sql -p
