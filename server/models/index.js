@@ -37,12 +37,18 @@ module.exports = {
     },
     post: (user, callback) => {
       let queryString = 'insert into users (name) values (?);';
-
+      var that = this;
       db.connection.query(queryString, [user.username], (err, userId) => {
         if (err) {
           console.error('USERS MODEL POST() ERROR: ', err.code);
           if (err.code === 'ER_DUP_ENTRY') {
-            console.log('hi');// this.users.get(callback); 
+            console.log('DUP_ENTRY this: ', that);
+            that.get((err, users) => {
+              var result = users.find( (person) => {
+                return person.name === user.username;
+              });
+              callback(err, result.id);
+            }); 
           } else {
             callback(err, null);           
           }
