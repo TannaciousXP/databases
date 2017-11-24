@@ -5,7 +5,7 @@ by Peter X. Tan
 
 ## System Requirements
 
-- [Brew](https://brew.sh/);
+- [Brew](https://brew.sh/)
 - [Node](https://nodejs.org/en/)
 - [MySQL](https://www.mysql.com/)
 
